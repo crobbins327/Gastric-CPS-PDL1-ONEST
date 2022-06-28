@@ -204,37 +204,6 @@ diff$path_number = 2:(nrow(consist))
 mData = merge(consist, diff, by = 'path_number', all = TRUE)
 write.table(mData, paste0('ONEST_concord/','LGperCPS-gastric_modelData-opa.txt'), sep='\t', row.names = F, quote = F)
 
-#ONEST plots of cases with score of X only (by at least one rater)
-# onlyComp = c(0, "1,2", 3)
-# onlyComp = c(0,1,2,3)
-# for(i in 1:length(onlyComp)){
-#   f1 = onlyComp[i]
-#   cat('Working on',f1,'only...','\n')
-#   sub = categ_split(her2, type='only', f1 = f1)
-#   results = ONEST_plot(sub, plotI=T, metric = 'OPA')
-#   write.table(results$concord, paste0('ONEST_concord/HER2/',f1,'only_HER2_concordance-opa.txt'), sep='\t', row.names = F, quote = F)
-#   write.table(results$stats, paste0('ONEST_concord/HER2/',f1,'only_HER2_plotStats-opa.txt'), sep='\t', row.names = F, quote = F)
-# }
-
-#ONEST plots of scores grouped by X vs not X
-# score = c(0,1,2,3)
-# score = c(0,'1,2',3)
-# score = c(1,2)
-# for(i in 1:length(score)){
-#   f1 = score[i]
-#   cat('Working on',f1,'vs not',f1,'...','\n')
-#   sub = categ_split(her2low, type='not', f1 = f1)
-#   results = ONEST_plot(sub, plotI=T, metric = 'OPA')
-#   # write.table(results$concord, paste0('ONEST_concord/HER2/',f1,'vnot',f1,'_HER2_concordance-opa.txt'), sep='\t', row.names = F, quote = F)
-#   # write.table(results$stats, paste0('ONEST_concord/HER2/',f1,'vnot',f1,'_HER2_plotStats-opa.txt'), sep='\t', row.names = F, quote = F)
-#   
-#   consist = data.frame(results$modelData$consistency)
-#   consist$path_number = 2:(nrow(consist)+1)
-#   diff = data.frame(results$modelData$difference)
-#   diff$path_number = 2:(nrow(consist))
-#   mData = merge(consist, diff, by = 'path_number', all = TRUE)
-#   write.table(mData, paste0('ONEST_concord/HER2/',f1,'vnot',f1,'_HER2_modelData-opa.txt'), sep='\t', row.names = F, quote = F)
-# }
 
 #######################################################################################
 #######################################################################################
