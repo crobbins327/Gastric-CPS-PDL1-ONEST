@@ -107,7 +107,7 @@ rand_plotline = function(t, path, indi=1, color='red', metric='OPA', perAgree=10
   return(C)
 }
 
-ONEST_plotModel_fromData = function(model_data, name, file, percent=TRUE, xBy=2){
+ONEST_plotModel_fromData = function(model_data, name, file, percent=TRUE, dpi=600, xBy=2){
   m = nrow(model_data)+1
   scale=1
   cons_ylab = 'Proportion of identitcal reads'
@@ -170,7 +170,7 @@ ONEST_plotModel_fromData = function(model_data, name, file, percent=TRUE, xBy=2)
   } else{
     q = q + scale_y_continuous(expand=c(0,0), breaks=seq(0,1,by=0.2), limits=c(0,1))
   }
-  ggsave(paste0(file,'_model.jpg'), plot=q, device="jpeg", width=6.43, height=5.18, units="in", dpi=300)
+  ggsave(paste0(file,'_model.jpg'), plot=q, device="jpeg", width=6.43, height=5.18, units="in", dpi=dpi)
   
   #should have path number
   diff = model_data[,c('path_number','diff_consist', 'diff_high')]
@@ -231,11 +231,11 @@ ONEST_plotModel_fromData = function(model_data, name, file, percent=TRUE, xBy=2)
     p = p + scale_y_continuous(expand=c(0,0), breaks=seq(0,mval,by=0.01), limits=c(0,mval))
   }
   p
-  ggsave(paste0(file,'_diff-trajectory.jpg'), plot=p, device="jpeg", width=6.43, height=5.18, units="in", dpi=300)
+  ggsave(paste0(file,'_diff-trajectory.jpg'), plot=p, device="jpeg", width=6.43, height=5.18, units="in", dpi=dpi)
 }
 
 
-ONEST_plot_fromData = function(concord, plot_data, name, file, ylab = 'Overall Percent Agreement', color='black', percent=TRUE){
+ONEST_plot_fromData = function(concord, plot_data, name, file, ylab = 'Overall Percent Agreement', color='black', percent=TRUE, dpi=600){
   m = nrow(concord)+1
   scale=1
   if (percent){
@@ -263,7 +263,7 @@ ONEST_plot_fromData = function(concord, plot_data, name, file, ylab = 'Overall P
     p = p + scale_y_continuous(expand=c(0,0), breaks=seq(0,1,by=0.2), limits=c(0,1))
   }
   # p
-  ggsave(paste0(file,'_100sim.jpg'), plot=p, device="jpeg", width=6.43, height=5.18, units="in", dpi=300)
+  ggsave(paste0(file,'_100sim.jpg'), plot=p, device="jpeg", width=6.43, height=5.18, units="in", dpi=dpi)
   
   line_types = c("Mean"=1,"95% CI"=2)
   plot_data[plot_data < 0] = 0
@@ -313,7 +313,7 @@ ONEST_plot_fromData = function(concord, plot_data, name, file, ylab = 'Overall P
     q = q + scale_y_continuous(expand=c(0,0), breaks=seq(0,1,by=0.2), limits=c(0,1))
   }
   # q
-  ggsave(paste0(file,'_meanCI.jpg'), plot=q, device="jpeg", width=6.43, height=5.18, units="in", dpi=300)
+  ggsave(paste0(file,'_meanCI.jpg'), plot=q, device="jpeg", width=6.43, height=5.18, units="in", dpi=dpi)
   # dev.off()
   return(list(plot100=p, plotMeanCI=q))
 }

@@ -212,16 +212,16 @@ write.table(mData, paste0('ONEST_concord/','LGperCPS-gastric_modelData-opa.txt')
 #######################################################################################
 
 desiredPlots = c('CPS-gastric',
-                 # 'LGperCPS-gastric',
-                 'SMperCPS-gastric'
-                 # 'lt10perCPS-gastric',
-                 # 'lt20perCPS-gastric'
+                 'LGperCPS-gastric',
+                 'SMperCPS-gastric',
+                 'lt10perCPS-gastric',
+                 'lt20perCPS-gastric'
                  )
 labels = c('CPS score (<1, >=1)', 
-           # 'CPS score (<1, 1-10, 10-20, 20-50, and 50-100)',
-           'CPS score (<1, 1-20, >20)'
-           # 'CPS score (<10, >=10)',
-           # 'CPS score (<20, >=20)'
+           'CPS score (<1, 1-10, 10-20, 20-50, and 50-100)',
+           'CPS score (<1, 1-20, >20)',
+           'CPS score (<10, >=10)',
+           'CPS score (<20, >=20)'
            )
 
 desiredPlots = c('perCPS-gastric')
@@ -229,7 +229,8 @@ labels = c('Percent CPS score')
 
 # datadir = 'ONEST_concord/ICC'
 # datadir = 'ONEST_concord/Fleiss_Kappa'
-datadir = 'ONEST_concord/OPA_excludeHW/90perAgree'
+# datadir = 'ONEST_concord/OPA_excludeHW/90perAgree'
+datadir = 'ONEST_concord/OPA'
 
 
 flist = list.files(datadir)
@@ -242,10 +243,10 @@ for (i in 1:length(desiredPlots)){
   plot_data = read.delim(paste0(datadir,'/',loadFiles[grep('plotStats',loadFiles)]), sep='\t')
   # ONEST_plot_fromData(concord, plot_data, name=labels[i], file=desiredPlots[i], ylab="ICC", color='blue', percent = F)
   # ONEST_plot_fromData(concord, plot_data, name=labels[i], file=desiredPlots[i], ylab="Fleiss' Kappa", color='red', percent = F)
-  ONEST_plot_fromData(concord, plot_data, name=labels[i], file=desiredPlots[i], ylab="90% Agreement", color='black', percent = T)
+  ONEST_plot_fromData(concord, plot_data, name=labels[i], file=desiredPlots[i], ylab="Overall Percent Agreement", color='black', percent = T, dpi=2000)
   if(length(loadFiles)==3){
     model_data = read.delim(paste0(datadir,'/',loadFiles[grep('modelData',loadFiles)]), sep='\t')
-    ONEST_plotModel_fromData(model_data, name=labels[i], file=desiredPlots[i], percent=TRUE)
+    ONEST_plotModel_fromData(model_data, name=labels[i], file=desiredPlots[i], percent=TRUE, dpi=2000)
   }
 }
 

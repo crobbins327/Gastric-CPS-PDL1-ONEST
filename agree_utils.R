@@ -285,7 +285,7 @@ concTab = function(ratings){
 
 
 fillTable = function(df, metTab, groupN, noICC=F, perAgree = 100, kappa_onlyCompletelyRatedCases=T){
-  opvect = unlist(opa(df, perAgree, removeNA = F))
+  opvect = unlist(opa(df, perAgree, removeNA = T))
   opav = opvect[1]
   l_ci = opvect[2]
   u_ci = opvect[3]
